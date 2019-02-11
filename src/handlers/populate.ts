@@ -1,5 +1,6 @@
 import { Sequence, Population } from '../types';
-import { POPULATION_SIZE, lambda } from '../config';
+import { POPULATION_SIZE } from '../config';
+import { invoke } from '../utils';
 
 const mutate = (sequence: Sequence): Sequence => {
   const [pos1, pos2] = [
@@ -25,15 +26,13 @@ export default async (winners) => {
   const midway = Math.ceil(best.length - 1);
   const offspring = `${best.substr(0, midway)}${rando.substr(midway)}`;
 
-
   const population: Population = new Array(POPULATION_SIZE).fill(null).map(() =>
     mutate(mutate(mutate(mutate(offspring))))
   );
 
-  lambda.invoke({
-    FunctionName: 'lambda-genetics-dev-generation',
-    InvocationType: 'RequestResponse',
-    Payload: JSON.stringify(population)
+  invoke({
+    functionName: 'aggregate',
+    payload: population
   })
 
   return {
