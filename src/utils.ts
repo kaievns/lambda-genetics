@@ -8,8 +8,8 @@ type Params = {
   payload: any
 };
 
-export const invoke = async ({ functionName, payload, invocationType = 'RequestResponse' }: Params) => 
-  new Promise((resolve, reject) => {
+export const invoke = async <T>({ functionName, payload, invocationType = 'RequestResponse' }: Params) => 
+  new Promise<T>((resolve, reject) => {
     const params = {
       FunctionName: `lambda-genetics-dev-${functionName}`,
       InvocationType: invocationType,
