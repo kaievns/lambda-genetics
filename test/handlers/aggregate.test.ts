@@ -9,7 +9,6 @@ jest.mock('../../src/utils', () => ({
     .mockResolvedValue({ score: 123 })
 }));
 
-
 describe('aggregate handler', () => {
   it('aggregates the calculation results for a population', async () => {
     const result = await aggregate({
