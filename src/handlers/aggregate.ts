@@ -1,8 +1,10 @@
-import { Population } from '../types';
+import { Population, CalculationResult } from '../types';
 import { invoke } from '../utils';
 
-export default async (event: any) => {
-  const population = event as Population;
+type EventPayload = { population: Population, generation: number }
+
+export default async (event: EventPayload ) => {
+  const { population, generation } = event;
   const result = await Promise.all(population.map(sequence =>
     invoke({
       functionName: 'calculate',
@@ -11,13 +13,19 @@ export default async (event: any) => {
       console.error('failed to process', sequence, err);
       return null
     })
-  ));
+  )) as CalculationResult[];
 
-  console.log(result);
+  const [bestResult, ...rest] = result.filter(Boolean).sort((a, b) => a.score > b.score ? -1 : 1);
+  const randomResult = rest[Math.random() * rest.length | 0];
+
+  const winners = [bestResult, randomResult];
 
   return {
     statusCode: 200,
-    body: JSON.stringify(result, null, 2),
+    body: JSON.stringify({
+      generation,
+      winners
+    }),
   };
 }
 

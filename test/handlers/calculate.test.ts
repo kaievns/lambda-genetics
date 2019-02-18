@@ -1,6 +1,8 @@
 import { calculate } from '../../src/handlers';
 import { letters } from '../../src/config';
 
+Date.now = jest.fn().mockReturnValue(Date.now())
+
 describe('calculate handler', () => {
   it('calculates a score for a text based on how many letters fit', async () => {
     const sequence = letters.sort().slice(0, letters.length/2).join('');

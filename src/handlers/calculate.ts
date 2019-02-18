@@ -1,4 +1,4 @@
-import { Sequence } from '../types';
+import { Sequence, CalculationResult } from '../types';
 import { letters } from '../config';
 
 const IDEAL_STATE = letters.sort().join('');
@@ -14,13 +14,14 @@ const grade = (sequence: Sequence): number => {
 export default async (event: any) => {
   const sequence = event as Sequence;
   const startedAt = Date.now();
+  const result: CalculationResult = {
+    sequence,
+    score: grade(sequence),
+    time: Date.now() - startedAt
+  }
 
   return {
     statusCode: 200,
-    body: JSON.stringify({
-      sequence,
-      score: grade(sequence),
-      time: Date.now() - startedAt
-    })
+    body: JSON.stringify(result)
   }
 }
