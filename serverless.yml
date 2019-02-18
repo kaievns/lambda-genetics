@@ -18,12 +18,18 @@ provider:
       Resource: "*"
 
 functions:
-  aggregate:
-    handler: handler.aggregate
+  kicker: 
+    handler: handler.kicker
     events:
       - http:
           method: get
           path: hello
+  
+  looper:
+    handler: handler.looper
+
+  aggregate:
+    handler: handler.aggregate
 
   calculate:
     handler: handler.calculate
