@@ -1,4 +1,4 @@
-import { invoke } from "../src/utils";
+import { invoke } from "../../src/utils";
 
 jest.mock('aws-sdk', () => ({
   Lambda: jest.fn().mockImplementation(() => ({

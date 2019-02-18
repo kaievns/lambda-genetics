@@ -1,4 +1,4 @@
-import mutate from '../src/handlers/mutate';
+import mutate from '../../src/utils/mutate';
 
 describe('mutate', () => {
   it('swaps random letters in the sequence', () => {
