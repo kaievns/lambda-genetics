@@ -21,7 +21,7 @@ describe('populate', () => {
       generation: 123
     });
 
-    expect(mutate).toHaveBeenCalledWith('abcddcba')
+    expect(mutate).toHaveBeenCalledWith('abcdhgfe')
     expect(invoke).toHaveBeenCalledWith({ 
       functionName: 'aggregate', 
       payload: { 
