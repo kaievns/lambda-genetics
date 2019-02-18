@@ -8,7 +8,7 @@ export default async ({ winners, generation = 1 }: any) => {
   const offspring = cross(best, rando);
 
   const population: Population = new Array(POPULATION_SIZE).fill(null).map(() =>
-    mutate(mutate(offspring))
+    mutate(offspring)
   );
 
   const payload = {

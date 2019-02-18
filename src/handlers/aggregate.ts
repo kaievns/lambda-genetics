@@ -17,7 +17,9 @@ export default async (event: EventPayload ) => {
   )) as CalculationResult[];
 
   const [bestResult, ...rest] = result.filter(Boolean).sort((a, b) => a.score > b.score ? -1 : 1);
-  const randomResult = rest[Math.random() * rest.length / 2 | 0]; // from the better half of the pile
+  let randomResult = rest[Math.random() * rest.length * 2/3 | 0]; // from the better part of the results
+
+  randomResult = bestResult; // shortcutting because we're sorting an alphabet
 
   const winners = [bestResult, randomResult];
   const payload = {
