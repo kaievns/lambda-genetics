@@ -4,7 +4,7 @@ import { invoke } from "../utils";
 export default async () => {
   const startingSequence = letters.sort().reverse().join('');
 
-  invoke({
+  await invoke({
     functionName: 'looper',
     payload: {
       generation: 1,

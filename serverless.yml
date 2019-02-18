@@ -19,20 +19,20 @@ provider:
 
 functions:
   kicker: 
-    handler: handler.kicker
+    handler: src/handlers/index.kicker
     events:
       - http:
           method: get
           path: hello
   
   looper:
-    handler: handler.looper
+    handler: src/handlers/index.looper
 
   aggregate:
-    handler: handler.aggregate
+    handler: src/handlers/index.aggregate
 
   calculate:
-    handler: handler.calculate
+    handler: src/handlers/index.calculate
   
   populate:
-    handler: handler.populate
+    handler: src/handlers/index.populate

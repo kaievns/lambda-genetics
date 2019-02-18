@@ -8,7 +8,7 @@ export default async ({ winners, generation = 1 }: any) => {
   const offspring = `${best.substr(0, midway)}${rando.substr(midway)}`;
 
   const population: Population = new Array(POPULATION_SIZE).fill(null).map(() =>
-    mutate(mutate(mutate(offspring)))
+    mutate(mutate(offspring))
   );
 
   const payload = {
@@ -16,7 +16,7 @@ export default async ({ winners, generation = 1 }: any) => {
     generation: generation + 1
   };
 
-  invoke({
+  await invoke({
     functionName: 'aggregate',
     payload
   })

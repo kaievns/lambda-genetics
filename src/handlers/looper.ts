@@ -1,4 +1,4 @@
-import { CalculationResult, Population } from "../types";
+import { CalculationResult } from "../types";
 import { STOP_AFTER_GENERATION } from "../config";
 import { invoke } from "../utils";
 
@@ -25,8 +25,8 @@ export default async (event: LooperPayload) => {
   }
   
   console.log(`Processing generation: ${generation}, winner: ${sequence}, score: ${score}`);
-  
-  invoke({
+
+  await invoke({
     functionName: 'populate',
     payload: {
       generation,

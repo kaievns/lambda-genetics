@@ -8,7 +8,8 @@ export default async (event: EventPayload ) => {
   const result = await Promise.all(population.map(sequence =>
     invoke({
       functionName: 'calculate',
-      payload: sequence
+      payload: sequence,
+      invocationType: 'RequestResponse'
     }).catch(err => {
       console.error('failed to process', sequence, err);
       return null
@@ -19,13 +20,16 @@ export default async (event: EventPayload ) => {
   const randomResult = rest[Math.random() * rest.length | 0];
 
   const winners = [bestResult, randomResult];
+  const payload = {
+    generation,
+    winners
+  };
+
+  await invoke({ functionName: 'looper', payload })
 
   return {
     statusCode: 200,
-    body: JSON.stringify({
-      generation,
-      winners
-    }),
+    body: JSON.stringify(payload),
   };
 }
 

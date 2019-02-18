@@ -19,8 +19,8 @@ describe('aggregate handler', () => {
       ]
     });
 
-    expect(invoke).toHaveBeenCalledWith({ functionName: 'calculate', payload: 'asdf1' });
-    expect(invoke).toHaveBeenCalledWith({ functionName: 'calculate', payload: 'asdf2' });
+    expect(invoke).toHaveBeenCalledWith({ functionName: 'calculate', payload: 'asdf1', invocationType: 'RequestResponse' });
+    expect(invoke).toHaveBeenCalledWith({ functionName: 'calculate', payload: 'asdf2', invocationType: 'RequestResponse' });
 
     expect(result).toEqual({
       statusCode: 200,
